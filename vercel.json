@@ -6,18 +6,21 @@
         "use": "@vercel/node"
       },
       {
-        "src": "client/package.json",
-        "use": "@vercel/static-build"
+        "src": "package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "build"
+        }
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "/client/$1"
-      },
-      {
         "src": "/send-email",
         "dest": "/server.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/build/$1"
       }
     ]
   }
